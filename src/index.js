@@ -4,11 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import User from './components/User/User';
+import Admin from './components/Admin/Admin';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="users" element={<User />} />
+        <Route path="admin" element={<Admin />} />
+      </Routes>
+  </BrowserRouter>
   </React.StrictMode>
 );
 
