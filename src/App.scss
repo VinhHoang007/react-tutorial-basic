@@ -3,15 +3,87 @@ body {
   margin: 0;
 }
 
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-x {
+    max-width: 1800!important;
+  }
+}
+
 .app-container {
   .header-container {
-    .navbar-nav {
+    .btn-login {
+      border-radius: 5px;
+      margin-right: 15px;
+      padding: 5px 25px;
+      border: 1px solid #535353;
+      height: 40px;
+    }
+    .btn-signup {
+      border-radius: 5px;
+      padding: 0 15px;
+      background-color: #303030;
+      color: white;
+      height: 40px;
+
+      &:hover{
+        background: black;
+      }
+    }
+    .navbar {
+      padding-top: 20px;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0) !important;
       .nav-link {
         // class active dung ngang hang voi nav-link
         &.active {
-          color: red;
+          color: blue;
         }
       }
     }
   }
+
+  .homepage-container {
+    .homepage-content{
+      padding: 160px;
+      width: 50%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      .title-1{
+        font-size: 65px;
+        line-height: 80px;
+        letter-spacing: normal;
+        margin-bottom: 24px;
+        max-width: none;
+      }
+
+      .title-2{
+        font-size: 28px;
+      }
+
+      .title-3{
+        button{
+          border-radius: 5px;
+          font-family: sans-serif;
+          padding: 12px 24px;
+          font-size: 16px;
+          line-height: 1.5;
+          font-weight: 500;
+          background-color: #303030;
+          color: white;
+        }
+        button:hover{
+          background: black;
+        }
+      }
+    }
+  }
+}
+
+video {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }

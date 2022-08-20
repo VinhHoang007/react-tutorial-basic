@@ -1,0 +1,14 @@
+npm install --save-exact react-router-dom@6.3.0 react-bootstrap@2.4.0 boostrap@5.2.0 
+
+https://www.npmjs.com/package/react-pro-sidebar
+react pro sidebar
+
+npm install --save-exact react-pro-sidebar@0.7.1
+
+npm install --save-exact react-icons@4.4.0
+
+npm install --save-exact axios@0.27.2
+
+npm install --save-exact react-toastify@9.0.8
+
+npm install --save-exact react-paginate@8.1.3
