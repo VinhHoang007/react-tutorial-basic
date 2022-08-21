@@ -18,7 +18,8 @@ const ModalCreateUser = () => {
             show={show} 
             onHide={handleClose} 
             size="xl"
-            static>
+            static
+            className="modal-add-user">
                 <Modal.Header closeButton>
                     <Modal.Title>Add New User</Modal.Title>
                 </Modal.Header>
@@ -44,8 +45,12 @@ const ModalCreateUser = () => {
                             </select>
                         </div>
                         <div className="col-md-12">
-                            <label className="form-label">Image</label>
-                            <input type="file" />
+                            <label className="form-label">Upload File Image</label>
+                            <input type="file" hidden/>
+                            <div className="col-md-12 img-preview">
+                                {/* <img src="" alt="#" /> */}
+                                <span>Preview Image</span>
+                            </div>
                         </div>
                     </form>
                 </Modal.Body>
