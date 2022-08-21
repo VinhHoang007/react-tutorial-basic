@@ -1,4 +1,3 @@
-import 'react-pro-sidebar/dist/css/styles.css';
 import {
     ProSidebar,
     Menu,
@@ -7,18 +6,18 @@ import {
     SidebarHeader,
     SidebarFooter,
     SidebarContent,
-  } from 'react-pro-sidebar';
-
-  import sidebarBg from '../../assets/bg2.jpg';
-
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
-import {DiReact}  from "react-icons/di";
-import {MdDashboard} from "react-icons/md";
+} from 'react-pro-sidebar';
+import { Link } from "react-router-dom";
+import 'react-pro-sidebar/dist/css/styles.css';
+import sidebarBg from '../../assets/bg2.jpg';
+import { FaGem, FaGithub } from 'react-icons/fa';
+import { DiReact } from "react-icons/di";
+import { MdDashboard } from "react-icons/md";
 import './SideBar.scss';
 
 
 const SideBar = (props) => {
-    const { image, collapsed,toggled, handleToggleSidebar } = props 
+    const { collapsed, toggled, handleToggleSidebar } = props
     return (
         <>
             <ProSidebar
@@ -40,8 +39,8 @@ const SideBar = (props) => {
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
                         }}
-                    >   
-                        <DiReact size={'3em'} color={"00bfff"}/>
+                    >
+                        <DiReact size={'3em'} color={"00bfff"} />
                         Study React
                     </div>
                 </SidebarHeader>
@@ -53,6 +52,7 @@ const SideBar = (props) => {
                             suffix={<span className="badge red">Main</span>}
                         >
                             Dashboard
+                            <Link to="/admin"/>
                         </MenuItem>
                         <MenuItem icon={<FaGem />}> Components</MenuItem>
                     </Menu>
@@ -60,11 +60,14 @@ const SideBar = (props) => {
                         <SubMenu
                             // suffix={<span className="badge yellow">3</span>}
                             // icon={<FaRegLaughWink />}
-                            icon = {<FaGem />}
+                            icon={<FaGem />}
                             title="Features"
 
                         >
-                            <MenuItem> Manage Users</MenuItem>
+                            <MenuItem> 
+                                Manage Users
+                                <Link to="/admin/manage-users"/>
+                            </MenuItem>
                             <MenuItem> Manage Quizzes</MenuItem>
                             <MenuItem> Manage Questions</MenuItem>
                         </SubMenu>

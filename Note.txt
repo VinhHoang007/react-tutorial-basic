@@ -1,3 +1,8 @@
+// Code html in jsx react faster
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
+
 npm install --save-exact react-router-dom@6.3.0 react-bootstrap@2.4.0 boostrap@5.2.0 
 
 https://www.npmjs.com/package/react-pro-sidebar
