@@ -2,12 +2,20 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { FaPlusCircle } from 'react-icons/fa'
+import { toast } from 'react-toastify'
+import { postCreateNewUser } from '../../../services/ApiServices'
 
-const ModalCreateUser = () => {
-  const [show, setShow] = useState(false)
+const ModalCreateUser = (props) => {
+  const { show, setShow } = props
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => {
+    setShow(false)
+    setEmail('')
+    setPassword('')
+    setRole('')
+    setImage('')
+    setPreviewImage('')
+  }
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
@@ -21,12 +29,43 @@ const ModalCreateUser = () => {
       setImage(event.target.files[0])
     }
   }
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      )
+  }
+  const handSubmitCreateUser = async () => {
+    //validate
+    const isValidEmail = validateEmail(email)
+    if (!isValidEmail) {
+      toast.error('Invalid Email')
+      return
+    }
+
+    if (!password) {
+      toast.error('Invalid Password')
+      return
+    }
+
+    let data = await postCreateNewUser(email, password, username, role, image)
+
+    if (data && data.EC === 0) {
+      toast.success(data.EM)
+      handleClose()
+    }
+
+    if (data && data.EC !== 0) {
+      toast.error(data.EM)
+    }
+  }
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         Launch demo modal
-      </Button>
+      </Button> */}
 
       <Modal
         show={show}
@@ -102,8 +141,8 @@ const ModalCreateUser = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={() => handSubmitCreateUser()}>
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
