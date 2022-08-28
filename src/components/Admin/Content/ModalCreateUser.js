@@ -1,65 +1,67 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
-import { FaPlusCircle } from 'react-icons/fa'
-import { toast } from 'react-toastify'
-import { postCreateNewUser } from '../../../services/ApiServices'
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { FaPlusCircle } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { postCreateNewUser } from '../../../services/ApiServices';
 
 const ModalCreateUser = (props) => {
-  const { show, setShow } = props
+  const { show, setShow } = props;
 
   const handleClose = () => {
-    setShow(false)
-    setEmail('')
-    setPassword('')
-    setRole('')
-    setImage('')
-    setPreviewImage('')
-  }
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('')
-  const [role, setRole] = useState('USER')
-  const [image, setImage] = useState('')
-  const [previewImage, setPreviewImage] = useState('')
+    setShow(false);
+    setEmail('');
+    setUsername('');
+    setPassword('');
+    setRole('');
+    setImage('');
+    setPreviewImage('');
+  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [role, setRole] = useState('USER');
+  const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
 
   const handleUploadImage = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
-      setPreviewImage(URL.createObjectURL(event.target.files[0]))
-      setImage(event.target.files[0])
+      setPreviewImage(URL.createObjectURL(event.target.files[0]));
+      setImage(event.target.files[0]);
     }
-  }
+  };
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      )
-  }
+      );
+  };
   const handSubmitCreateUser = async () => {
     //validate
-    const isValidEmail = validateEmail(email)
+    const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      toast.error('Invalid Email')
-      return
+      toast.error('Invalid Email');
+      return;
     }
 
     if (!password) {
-      toast.error('Invalid Password')
-      return
+      toast.error('Invalid Password');
+      return;
     }
 
-    let data = await postCreateNewUser(email, password, username, role, image)
+    let data = await postCreateNewUser(email, password, username, role, image);
 
     if (data && data.EC === 0) {
-      toast.success(data.EM)
-      handleClose()
+      toast.success(data.EM);
+      handleClose();
+      await props.fetchListusers();
     }
 
     if (data && data.EC !== 0) {
-      toast.error(data.EM)
+      toast.error(data.EM);
     }
-  }
+  };
 
   return (
     <>
@@ -89,7 +91,7 @@ const ModalCreateUser = (props) => {
               />
             </div>
             <div className="col-md-6">
-              <label fclassName="form-label">Password</label>
+              <label className="form-label">Password</label>
               <input
                 type="password"
                 className="form-control"
@@ -147,7 +149,7 @@ const ModalCreateUser = (props) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ModalCreateUser
+export default ModalCreateUser;
