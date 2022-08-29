@@ -6,7 +6,7 @@ import ModalCreateUser from './ModalCreateUser';
 import ModalDeleteUser from './ModalDeleteUser';
 import ModalUpdateUser from './ModalUpdateUser';
 import ModalViewUser from './ModalViewUser';
-import TableUser from './TableUser';
+import TableUserPaginate from './TableUserPaginate';
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
@@ -64,7 +64,13 @@ const ManageUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <TableUser
+          {/* <TableUser
+            listUsers={listUsers}
+            handleClickBtnUpdate={handleClickBtnUpdate}
+            handleClickBtnView={handleClickBtnView}
+            handleClickBtnDelete={handleClickBtnDelete}
+          /> */}
+          <TableUserPaginate
             listUsers={listUsers}
             handleClickBtnUpdate={handleClickBtnUpdate}
             handleClickBtnView={handleClickBtnView}
@@ -96,6 +102,7 @@ const ManageUser = (props) => {
         dataDelete={dataDelete}
         fetchListusers={fetchListusers}
       />
+
     </div>
   );
 };
