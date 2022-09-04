@@ -3,10 +3,10 @@ import ReactPaginate from "react-paginate";
 
 
 const TableUserPaginate = (props) => {
-    const { listUsers } = props;
-    const [pageCount, setPageCount] = useState(0);
+    const { listUsers, pageCount } = props;
     const handlePageClick = (event) => {
-        console.log(`User requested page number ${event.selected}`);
+        props.fetchListusersPaginations(+event.selected + 1);
+        props.setCurrentPage(+event.selected + 1);
     };
 
     return (
@@ -46,31 +46,35 @@ const TableUserPaginate = (props) => {
                         })}
                     {listUsers &&
                         listUsers.length === 0 &&
-                        listUsers.map((item, index) => {
+                        listUsers.map(() => {
                             return <tr colSpan={'4'}>Not found data</tr>;
                         })}
                 </tbody>
             </table>
-            <ReactPaginate
-                nextLabel="next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={10}
-                previousLabel="< previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-            />
+            <div className="user-pagination">
+                <ReactPaginate
+                    nextLabel="Next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={2}
+                    pageCount={pageCount}
+                    previousLabel="< Pre"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakLabel="..."
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                    forcePage={props.currentPage - 1}
+                />
+            </div>
+            
         </>
     );
 };
