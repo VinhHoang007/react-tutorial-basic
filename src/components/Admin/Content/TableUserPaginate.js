@@ -47,7 +47,9 @@ const TableUserPaginate = (props) => {
                     {listUsers &&
                         listUsers.length === 0 &&
                         listUsers.map(() => {
-                            return <tr colSpan={'4'}>Not found data</tr>;
+                            <tr>
+                                <td colSpan={'5'}>Not found data</td>;
+                            </tr> 
                         })}
                 </tbody>
             </table>
