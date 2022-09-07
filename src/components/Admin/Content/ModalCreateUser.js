@@ -56,7 +56,7 @@ const ModalCreateUser = (props) => {
       toast.success(data.EM);
       handleClose();
       // await props.fetchListusers();
-      props.setCurrentPage(1)
+      props.setCurrentPage(1);
       await props.fetchListusersPaginations(1);
     }
 
@@ -116,7 +116,7 @@ const ModalCreateUser = (props) => {
                 className="form-select"
                 onChange={(event) => setRole(event.target.value)}
               >
-                <option value="USER">Role</option>
+                <option value="USER">USER</option>
                 <option value="ADMIN">ADMIN</option>
               </select>
             </div>

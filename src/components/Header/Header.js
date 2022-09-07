@@ -7,8 +7,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Header = () => {
     const navigate = useNavigate();
     const handleLogin = () => {
-        navigate('/login')
-    }
+        navigate('/login');
+    };
+    const handleRegister = () => {
+        navigate('/register');
+    };
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -23,12 +26,12 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         <button className="btn-login" onClick={() => handleLogin()}>Login</button>
-                        <button className="btn-signup">Sign up</button>
+                        <button className="btn-signup" onClick={() => handleRegister()}>Sign up</button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
     );
-}
+};
 
 export default Header;
