@@ -1,18 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { doLogin } from '../../redux/action/userAction';
 import { postLogin } from '../../services/ApiServices';
 import './Login.scss';
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
-
-    const navigate = useNavigate();
-
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -36,7 +30,6 @@ const Login = (props) => {
         let data = await postLogin(email, password);
 
         if (data && data.EC === 0) {
-            dispatch(doLogin(data));
             toast.success(data.EM);
             navigate("/");
         }
@@ -46,6 +39,7 @@ const Login = (props) => {
         }
     };
 
+    const navigate = useNavigate();
 
     return (
         <div className="login-container">

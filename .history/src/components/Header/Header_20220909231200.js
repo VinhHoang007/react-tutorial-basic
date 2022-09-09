@@ -1,4 +1,3 @@
-import { NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -29,18 +28,8 @@ const Header = () => {
                         <NavLink to="/admin" className="nav-link">Admin</NavLink>
                     </Nav>
                     <Nav>
-                        {isAuthenticated === false ?
-                            <>
-                                <button className="btn-login" onClick={() => handleLogin()}>Login</button>
-                                <button className="btn-signup" onClick={() => handleRegister()}>Sign up</button>
-                            </>
-                            :
-                            <NavDropdown title="Setting" className="nav-dropdown" id="basic-nav-dropdown">
-                                <NavDropdown.Item>Log out</NavDropdown.Item>
-                                <NavDropdown.Item>Profile</NavDropdown.Item>
-                            </NavDropdown>
-                        }
-
+                        <button className="btn-login" onClick={() => handleLogin()}>Login</button>
+                        <button className="btn-signup" onClick={() => handleRegister()}>Sign up</button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

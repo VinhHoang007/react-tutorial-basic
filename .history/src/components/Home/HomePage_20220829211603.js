@@ -1,9 +1,5 @@
-import { useSelector } from 'react-redux';
-import videHomePage from '../../assets/video-homepage.mp4';
+import videHomePage from '../../assets/video-homepage.mp4'
 const HomePage = (props) => {
-    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
-    const account = useSelector(state => state.user.account);
-
     return (
         <div className="homepage-container">
             <video autoPlay muted loop >
@@ -19,7 +15,7 @@ const HomePage = (props) => {
 
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default HomePage;
