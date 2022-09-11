@@ -5,7 +5,8 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'nprogress/nprogress.css';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
 
 import {
@@ -17,11 +18,14 @@ import Layout from './Layout';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <BrowserRouter>
-        <Layout />
-      </BrowserRouter>
-    </React.StrictMode>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
+      </React.StrictMode>
+    </PersistGate>
+
   </Provider>
 
 );
