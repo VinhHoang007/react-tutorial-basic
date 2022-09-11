@@ -27,3 +27,5 @@ npm install --save-exact redux@4.2.0
 npm install --save-exact redux-thunk@2.4.1
 
 npm install --save-exact redux-devtools-extension@2.13.9
+
+npm install --save-exact nprogress@0.2.0

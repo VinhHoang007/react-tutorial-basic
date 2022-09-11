@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ImSpinner3 } from "react-icons/im";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,6 +10,7 @@ import './Login.scss';
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -32,17 +34,20 @@ const Login = (props) => {
             toast.error('Invalid Password');
             return;
         }
+        setIsLoading(true);
         //Submit apis
         let data = await postLogin(email, password);
 
         if (data && data.EC === 0) {
             dispatch(doLogin(data));
             toast.success(data.EM);
+            setIsLoading(false);
             navigate("/");
         }
 
         if (data && data.EC !== 0) {
             toast.error(data.EM);
+            setIsLoading(false);
         }
     };
 
@@ -83,7 +88,11 @@ const Login = (props) => {
                     <button
                         className="btn-submit"
                         onClick={() => handleLogin()}
-                    >Login</button>
+                        disabled={isLoading}
+                    >
+                        {isLoading === true && <ImSpinner3 className="loader-icon" />}
+                        <span>Login</span>
+                    </button>
                 </div>
                 <div className="text-center">
                     <span className="back" onClick={() => { navigate('/'); }}>&#60;&#60;Go Back Homepage</span>
