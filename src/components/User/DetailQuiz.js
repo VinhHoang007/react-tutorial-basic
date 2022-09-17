@@ -69,6 +69,8 @@ const DetailQuiz = (props) => {
                         onClick={() => handlePrev()}>Prev</button>
                     <button className="btn btn-primary"
                         onClick={() => handleNext()}>Next</button>
+                    <button className="btn btn-warning"
+                        onClick={() => handleNext()}>Next</button>
                 </div>
             </div>
             <div className="right-content">
